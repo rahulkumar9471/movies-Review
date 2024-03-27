@@ -4,13 +4,15 @@ import Title from "../form/Title";
 import FormInput from "../form/FormInput";
 import Submit from "../form/Submit"; 
 import CustomLink from "../CustomLink";
+import FormContainer from "../form/FormContainer";
+import { commonModuleClasses } from "../../utils/theme";
 
 
 const ForgetPassword = () => {
   return (
-    <div className="fixed inset-0 bg-primary -z-10 flex justify-center items-center">
+    <FormContainer>
       <Container>
-        <form className="bg-secondary rounded p-6 w-96 space-y-4">
+        <form className={commonModuleClasses +" w-96"}>
           <Title>Please Enter Your Email</Title>
           <FormInput lable="Email" placeholder="Email" name="email" />
            
@@ -21,7 +23,7 @@ const ForgetPassword = () => {
           </div>
         </form>
       </Container>
-    </div>
+    </FormContainer>
   );
 };
 

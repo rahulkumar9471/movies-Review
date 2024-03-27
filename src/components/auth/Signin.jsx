@@ -5,11 +5,12 @@ import FormInput from "../form/FormInput";
 import Submit from "../form/Submit"; 
 import CustomLink from "../CustomLink";  
 import { commonModuleClasses } from "../../utils/theme";
+import FormContainer from "../form/FormContainer";
 
 const Signin = () => {
   
   return (
-    <div className="fixed inset-0 dark:bg-primary bg-white -z-10 flex justify-center items-center">
+    <FormContainer>
       <Container>
         <form className={commonModuleClasses +" w-72"}>
          <Title>Sign In</Title>
@@ -22,7 +23,7 @@ const Signin = () => {
           </div>
         </form>
       </Container>
-    </div>
+    </FormContainer>
   );
 };
 
