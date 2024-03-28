@@ -12,7 +12,7 @@ const Signin = () => {
   return (
     <FormContainer>
       <Container>
-        <form className={commonModuleClasses +" w-72"}>
+        <form className={commonModuleClasses +" w-96"}>
          <Title>Sign In</Title>
           <FormInput lable="Email" placeholder="Email" name="email" />
           <FormInput lable="Password" placeholder="**********" name="password" />
