@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Container from "../Container";
 import Title from "../form/Title";
 import FormInput from "../form/FormInput";
@@ -7,6 +8,7 @@ import CustomLink from "../CustomLink";
 import { commonModuleClasses } from "../../utils/theme";
 import FormContainer from "../form/FormContainer";
 import { createUser } from "../../api/auth";
+
 
 const validateUserInfo = ({ name, email, mobile, password }) => {
   const isValidEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -33,6 +35,8 @@ const validateUserInfo = ({ name, email, mobile, password }) => {
   return { ok: true };
 };
 
+
+
 const Signup = () => {
   const [userinfo, setUserinfo] = useState({
     name: "",
@@ -41,6 +45,7 @@ const Signup = () => {
     password: "",
   });
 
+  const navigate = useNavigate()
   const { name, email, mobile, password } = userinfo;
 
   const handleChange = ({ target }) => {
@@ -58,6 +63,12 @@ const Signup = () => {
     if (response.error) return console.log(response.error);
 
     console.log(response.user);
+
+    navigate('/auth/verification', {
+      state: response.user,
+      replace: true
+    })
+    
   };
 
   return (
