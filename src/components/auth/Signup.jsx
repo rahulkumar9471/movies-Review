@@ -8,6 +8,7 @@ import CustomLink from "../CustomLink";
 import { commonModuleClasses } from "../../utils/theme";
 import FormContainer from "../form/FormContainer";
 import { createUser } from "../../api/auth";
+import toast from "react-hot-toast";
 
 
 const validateUserInfo = ({ name, email, mobile, password }) => {
@@ -56,13 +57,12 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { ok, error } = validateUserInfo(userinfo);
-    if (!ok) return console.log(error);
+
+    if (!ok) return toast.error(error);
 
     var response = await createUser(userinfo);
 
-    if (response.error) return console.log(response.error);
-
-    console.log(response.user);
+    if (response.error) return toast.error(response.error);
 
     navigate('/auth/verification', {
       state: response.user,

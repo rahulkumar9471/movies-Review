@@ -6,6 +6,7 @@ import FormContainer from "../form/FormContainer";
 import { commonModuleClasses } from "../../utils/theme";
 import { useLocation, useNavigate } from "react-router-dom";
 import { verifyUserEmail } from "../../api/auth";
+import toast from "react-hot-toast";
 
 const OTP_LENGTH = 6;
 
@@ -26,8 +27,6 @@ const EmailVerification = () => {
   const { state } = useLocation();
 
   const user = state?.id;
-
-  console.log(user);
 
   const navigate = useNavigate();
 
@@ -61,14 +60,17 @@ const EmailVerification = () => {
     e.preventDefault()
 
     if(!isValidOTP(otp)){
-      return console.log("Invalid OTP");
+      return toast.error("Invalid OTP");
     }
 
-    const { error, message } = await verifyUserEmail({OTP: otp, userId: user.id})
+    const { error, message } = await verifyUserEmail({
+      OTP: otp.join(''), 
+      userId: user
+    })
 
-    if(error) return console.log(error);
+    if(error) return toast.error(error);
 
-    console.log(message);
+    toast.success(message);
  
   }
 
@@ -105,7 +107,7 @@ const EmailVerification = () => {
                 );
               })}
             </div>
-            <Submit value="Send Link" />
+            <Submit value="Verify Account" />
           </form>
         </Container>
       </FormContainer>
